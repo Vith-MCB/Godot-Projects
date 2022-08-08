@@ -1,5 +1,13 @@
 extends actor
 
+export var stompImpulse = 1000.0
+
+func _on_EnemyDetector_area_entered(area):
+	velocity = calculateStompVelocity(velocity, stompImpulse)
+	
+func _on_EnemyDetector_body_entered(body):
+	queue_free()
+
 func _physics_process(delta: float)-> void:
 	
 	#var used to check if the player released the jump key
@@ -35,5 +43,9 @@ func calculateMoveVelocity(
 	if jumpInterrupted : #Checks if the player still holding the jump button
 		newVelocity.y = 0.0 #If the button is released, the jump action stops
 	return newVelocity
-	
+
+func calculateStompVelocity(linearVelocity: Vector2, impulse:float) -> Vector2:
+	var out: = linearVelocity
+	out.y = -impulse
+	return out
 	
