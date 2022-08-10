@@ -7,6 +7,15 @@ signal hit
 var shot = preload("res://src/actors/shot.tscn")
 var canShot = true
 
+var screenSize
+
+func _ready():
+	screenSize = get_viewport_rect().size
+	Global.player = self
+	
+func _exit_tree():
+	Global.player = null
+
 #Function that gets the input from the player and return a vector
 func playerInput() -> Vector2: 
 	var _velocity: = Vector2.ZERO
@@ -22,6 +31,11 @@ func _process(delta):
 		newVelocity = newVelocity * speed
 		
 	position += newVelocity * delta #Moving the player 
+	
+	#Limits of player moviment
+	position.x = clamp(position.x, 0, screenSize.x)
+	position.y = clamp(position.y, 0, screenSize.y)
+
 	
 	#Shooting
 	if Input.is_action_pressed("shoot") and Global.createParentNode != null and canShot:

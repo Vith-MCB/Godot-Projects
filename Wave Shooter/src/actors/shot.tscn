@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Square.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/shot.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 8 )
 
 [node name="shot" type="Sprite"]
 modulate = Color( 0.360784, 0.466667, 0.823529, 1 )
@@ -10,5 +13,10 @@ texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="hitbox" type="Area2D" parent="." groups=["damage"]]
+
+[node name="colision" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource( 1 )
 
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
