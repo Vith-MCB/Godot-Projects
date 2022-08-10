@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Square.png" type="Texture" id=1]
+[ext_resource path="res://src/actors/player.gd" type="Script" id=2]
+
+[node name="player" type="Sprite"]
+modulate = Color( 0.254902, 0.294118, 0.729412, 1 )
+position = Vector2( 211, 96 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="shotCoolDown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="shotCoolDown" to="." method="_on_shotCoolDown_timeout"]
