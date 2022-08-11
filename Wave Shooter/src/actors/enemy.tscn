@@ -12,7 +12,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="hitbox" type="Area2D" parent="." groups=["enemy"]]
 
 [node name="collision" type="CollisionShape2D" parent="hitbox"]
 visible = false
