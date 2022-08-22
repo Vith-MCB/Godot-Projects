@@ -4,6 +4,8 @@ var createParentNode = null
 
 var player = null
 
+var points = 0
+
 func instanceNode (node, location, parent):
 	var nodeInst = node.instance() #instance the node to the variable
 	parent.add_child(nodeInst) #Create a new node with the instanced variable

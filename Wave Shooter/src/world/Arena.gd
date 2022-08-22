@@ -5,6 +5,7 @@ var enemy1 = preload("res://src/actors/enemy.tscn")
 #This part of the code is used to prevent bugs that happens if player isnt created yet
 func _ready():
 	Global.createParentNode = self
+	Global.points = 0
 func _exit_tree():
 	Global.createParentNode = null
 
@@ -17,3 +18,6 @@ func _on_enemySpawner_timeout():
 		enemyPos = Vector2(rand_range(-160,670), rand_range(-90, 390))
 		
 	Global.instanceNode(enemy1, enemyPos, self)
+	
+func _process(delta):
+	$UI/Control/points.text = str(Global.points)

@@ -7,6 +7,8 @@ var gotHit = false
 var recoil = 5
 var enemyHP = 3
 
+var bloodParticle = preload("res://src/actors/enemyBlood.tscn")
+
 func _process(delta):
 	if Global.player != null and gotHit == false:
 		moviment = global_position.direction_to(Global.player.global_position)
@@ -15,12 +17,15 @@ func _process(delta):
 	
 	global_position += moviment * delta * speed
 	
-	if enemyHP <= 0:
+	if enemyHP <= 0 and Global.createParentNode != null:
+		Global.points += 10
+		var bloodInstance = Global.instanceNode(bloodParticle, global_position, Global.createParentNode)
+		bloodInstance.rotation = moviment.angle()
 		queue_free()
 
 
 func _on_hitbox_area_entered(area):
-	if area.is_in_group("damage"):
+	if area.is_in_group("damage") and gotHit == false:
 		modulate = Color.white
 		area.get_parent().queue_free()
 		gotHit = true
