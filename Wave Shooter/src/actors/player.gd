@@ -8,10 +8,8 @@ var dead = false
 var shot = preload("res://src/actors/shot.tscn")
 var canShot = true
 
-var screenSize
 
 func _ready():
-	screenSize = get_viewport_rect().size
 	Global.player = self
 	
 func _exit_tree():
@@ -35,8 +33,8 @@ func _process(delta):
 		position += newVelocity * delta #Moving the player 
 	
 	#Limits of player moviment
-	position.x = clamp(position.x, 0, screenSize.x)
-	position.y = clamp(position.y, 0, screenSize.y)
+	position.x = clamp(position.x, 24, 616)
+	position.y = clamp(position.y, 24, 336)
 
 	
 	#Shooting

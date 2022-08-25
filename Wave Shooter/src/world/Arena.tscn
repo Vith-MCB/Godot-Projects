@@ -43,4 +43,9 @@ text = "100"
 align = 1
 valign = 1
 
+[node name="Camera" type="Camera2D" parent="."]
+
+[node name="cameraTimer" type="Timer" parent="Camera"]
+
 [connection signal="timeout" from="enemySpawner" to="." method="_on_enemySpawner_timeout"]
+[connection signal="timeout" from="Camera/cameraTimer" to="." method="_on_cameraTimer_timeout"]

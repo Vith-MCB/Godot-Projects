@@ -21,3 +21,7 @@ func _on_enemySpawner_timeout():
 	
 func _process(delta):
 	$UI/Control/points.text = str(Global.points)
+
+
+func _on_cameraTimer_timeout():
+	
