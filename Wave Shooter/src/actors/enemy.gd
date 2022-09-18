@@ -18,6 +18,8 @@ func _process(delta):
 	global_position += moviment * delta * speed
 	
 	if enemyHP <= 0 and Global.createParentNode != null:
+		if Global.camera != null:
+			Global.camera.screenShake(50,0.1)
 		Global.points += 10
 		var bloodInstance = Global.instanceNode(bloodParticle, global_position, Global.createParentNode)
 		bloodInstance.rotation = moviment.angle()
