@@ -6,6 +6,8 @@ var player = null
 
 var points = 0
 
+var record = 0;
+
 var camera = null
 
 func instanceNode (node, location, parent):
